@@ -1,0 +1,14 @@
+pkg/*
+.DS_Store
+*.o
+*.lo
+*.mo
+*.la
+\#*#
+.*.rej
+*.rej
+*~
+.#*
+*.sw[po]
+tags
+
