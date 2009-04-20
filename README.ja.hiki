@@ -1,0 +1,71 @@
+! PikiDocについて
+
+!! はじめに
+
+[[HikiDoc|http://hikidoc.rubyforge.org/svn/trunk/README.ja]]を拡張し、
+HikiDocの機能の一つである「プラグイン」機能を簡単にを追加できるようにした
+ライブラリです。
+
+本家HikiDocライブラリもバンドルしているため、このライブラリを入れるだけで
+使えます。
+
+!! 使い方
+
+プラグインを追加する部分以外は、本家の機能がそのまま使えます。
+
+ require 'piki_doc'
+ PikiDoc.to_xhtml(<<-EOS
+ ! PikiDocについて
+ 
+ !! はじめに
+ EOS
+
+!!! プラグインの使い方
+
+あらかじめPikiDoc.register()にプラグインを指定してください。今のところ、Gist
+プラグインとASINプラグインがバンドルされています。
+
+ PikiDoc.register(PikiDoc::Bundles::Gist.new, PikiDoc::Bundles::Asin.new)
+ PikiDoc.to_xhtml(<<-HTML)
+ !!!! ASIN
+
+ インライン {{asin('4797336625', 'morodiary05-22')}}
+
+ {{asin('4797336625', 'morodiary05-22')}}
+
+ !!!! Gist
+
+ インライン {{gist('88086')}}
+
+ {{gist('88086')}}
+ HTML
+
+次のように出力されます
+
+!!!! ASIN
+
+インライン {{asin('4797336625', 'morodiary05-22')}}
+
+{{asin('4797336625', 'morodiary05-22')}}
+
+!!!! Gist
+
+インライン {{gist(88086)}}
+
+{{gist(88086)}}
+
+!! プラグインの自作方法
+
+lib/piki_doc/bundles/内のサンプルと、features/*内の外部仕様を参考にしてください。
+
+!! Thanks
+
+!!! HikiDoc authors
+
+- 2005, Kazuhiko <kazuhiko@fdiary.net>
+- 2007, Minero Aoki
+
+!! ライセンス
+
+HikiDoc本家と同じ修正BSDライセンスです。
+
