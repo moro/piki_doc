@@ -1,36 +1,11 @@
-require 'uri'
-require 'piki_doc/output'
-require 'vendor/hikidoc'
 
-class PikiDoc < HikiDoc
-  @@plugins ||= []
-  class << self
-    def plugins; @@plugins; end
-    def register(*plugins)
-      @@plugins.concat(plugins)
-    end
+module PikiDoc
+  Version = "0.0.1"
 
-    def lint(plugin)
-      [:inline_plugin, :block_plugin].any?{|m| plugin.respond_to?(m) } && \
-      plugin.respond_to?(:accept?)
-    end
-
-    def to_xhtml(src, options = {})
-      new(::PikiDoc::HTMLOutput.new(" />", @@plugins), options).compile(src)
-    end
-
-    def to_html(src, options = {})
-      new(::PikiDoc::HTMLOutput.new(">"), @@plugins, options).compile(src)
-    end
-  end
-
-  private
-  def compile_uri_autolink(uri)
-    if(image?(path = URI(uri).path))
-      @output.image_hyperlink(uri, path.split(/\//).last)
-    else
-      super
-    end
-  end
+  autoload "Document", "piki_doc/document"
+  def register(*plugins); PikiDoc::Document.register(*plugins); end
+  def to_html(src, options={}); PikiDoc::Document.to_html(src, options={}) ; end
+  def to_xhtml(src, options={}); PikiDoc::Document.to_xhtml(src, options={}) ; end
+  module_function :register, :to_html, :to_xhtml
 end
 
