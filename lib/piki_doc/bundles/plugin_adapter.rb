@@ -8,16 +8,26 @@ module PikiDoc
       end
 
       def inline_plugin(src)
-        %Q[<span class='plugin #{plugin_name}'>#{plugin(src)}</span>]
+        plugin_dom("span", plugin(src))
       end
 
       def block_plugin(src)
-        %Q[<div class='plugin #{plugin_name}'>#{plugin(src)}</div>]
+        plugin_dom("div", plugin(src))
       end
 
       private
       def plugin(src); raise NotImplementedError; end
-      def plugin_name; self.class.name.split("::").last.downcase; end
+
+      def plugin_name
+        self.class.name.split("::").last.
+          gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2').
+          gsub(/([a-z\d])([A-Z])/,'\1_\2').
+          downcase
+      end
+
+      def plugin_dom(tag, content)
+        %Q[<#{tag} class='plugin #{plugin_name}'>#{content}</#{tag}>]
+      end
     end
   end
 end
