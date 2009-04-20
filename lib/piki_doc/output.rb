@@ -1,6 +1,6 @@
 require 'vendor/hikidoc'
 
-class PikiDoc < ::HikiDoc
+module PikiDoc
   class HTMLOutput < ::HikiDoc::HTMLOutput
     def initialize(suffix, plugins)
       super(suffix)
