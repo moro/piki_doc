@@ -1,5 +1,6 @@
 require 'piki_doc'
 require 'piki_doc/bundles/gist'
+require 'piki_doc/bundles/asin'
 require 'nokogiri'
 
 When /^"([^\"]*)"プラグインを登録する$/ do |name|
