@@ -82,7 +82,7 @@ end
 
 desc 'Update gem spec'
 task :gemspec do
-  open("#{NAME}.gemspec", 'w').write spec.to_ruby
+  open("#{NAME}.gemspec", 'w').write gemspec.to_ruby
 end
 
 desc "output example from README.ja.hiki"
