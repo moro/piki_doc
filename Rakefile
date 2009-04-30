@@ -39,7 +39,7 @@ gemspec = Gem::Specification.new do |s|
   s.version           = VERS
   s.platform          = Gem::Platform::RUBY
   s.has_rdoc          = false
-  s.extra_rdoc_files  = ["README.ja.hiki", "ChangeLog"]
+  s.extra_rdoc_files  = ["README.ja.hiki", "Changelog"]
   s.rdoc_options     += RDOC_OPTS + ['--exclude', '^(examples|extras)/']
   s.summary           = DESCRIPTION
   s.description       = DESCRIPTION
@@ -50,7 +50,7 @@ gemspec = Gem::Specification.new do |s|
   s.require_path      = "lib"
   s.test_files        = Dir["spec/**/*_spec.rb"] + Dir["features/**/*.rb"] + Dir["features/*.feature"]
 
-  s.files = %w(README.ja.hiki ChangeLog Rakefile) +
+  s.files = %w(README.ja.hiki Changelog Rakefile) +
     Dir.glob("{bin,doc,lib,templates,generators,extras,website,script}/**/*") + 
     Dir.glob("ext/**/*.{h,c,rb}") +
     Dir.glob("examples/**/*.rb") +

@@ -1,6 +1,6 @@
 
 module PikiDoc
-  Version = "0.0.2"
+  Version = "0.0.2.1"
 
   autoload "Document", "piki_doc/document"
   def register(*plugins); PikiDoc::Document.register(*plugins); end
