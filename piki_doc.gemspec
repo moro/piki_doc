@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{piki_doc}
-  s.version = "0.0.1"
+  s.version = "0.0.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["MOROHASHI Kyosuke"]
-  s.date = %q{2009-04-20}
+  s.date = %q{2009-04-30}
   s.description = %q{extended HikiDoc to able to plug plugins.}
   s.email = %q{moronatural@gmail.com}
   s.extra_rdoc_files = ["README.ja.hiki", "ChangeLog"]
