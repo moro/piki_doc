@@ -35,23 +35,25 @@ describe PikiDoc do
     HikiComatibilityMatcher.new(*arg)
   end
 
-  it do should compat_with_hiki(:xhtml, <<-EOS) end
+  [:xhtml, :html].each do |format|
+    it do should compat_with_hiki(format, <<-EOS) end
 !おはよう
 !!こんにちは
 
  こんばんは
 EOS
 
-  it do should compat_with_hiki(:xhtml, <<-EOS) end
+    it do should compat_with_hiki(format, <<-EOS) end
 - foobar
 - piyopiyo
 
 EOS
 
-  it do should_not compat_with_hiki(:xhtml, <<-EOS) end
+    it do should_not compat_with_hiki(format, <<-EOS) end
 !クエリつき画像リンク
 http://image.with.query.example.com/photo.jpg?size=100x75
 EOS
 
+  end
 end
 

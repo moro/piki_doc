@@ -24,7 +24,7 @@ module PikiDoc
       end
 
       def to_html(src, options = {})
-        new(::PikiDoc::HTMLOutput.new(">"), @@plugins, options).compile(src)
+        new(::PikiDoc::HTMLOutput.new(">", @@plugins), options).compile(src)
       end
     end
   end
