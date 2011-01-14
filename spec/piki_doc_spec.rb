@@ -2,13 +2,14 @@ require File.expand_path("spec_helper", File.dirname(__FILE__))
 require 'piki_doc'
 
 class HikiComatibilityMatcher
-  def initialize(format, hikidoc)
+  def initialize(format, hikidoc, options={})
     @format = "to_#{format}"
     @hikidoc = hikidoc
+    @options = options
   end
 
   def matches?(actual)
-    actual.send(@format, @hikidoc) == HikiDoc.send(@format, @hikidoc)
+    actual.send(@format, @hikidoc, @options) == HikiDoc.send(@format, @hikidoc, @options)
   end
 
   def description
@@ -51,6 +52,13 @@ EOS
   it do should_not compat_with_hiki(:xhtml, <<-EOS) end
 !クエリつき画像リンク
 http://image.with.query.example.com/photo.jpg?size=100x75
+EOS
+
+  it do should compat_with_hiki(:xhtml, <<-EOS, :level => 3) end
+!おはよう
+!!こんにちは
+
+ こんばんは
 EOS
 
 end
