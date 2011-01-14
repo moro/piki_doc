@@ -16,7 +16,7 @@ class HikiComatibilityMatcher
   end
 
   def failure_message_for_should
-    "should compat but do'nt compat with " + shorten_content
+    "should compat but don't compat with " + shorten_content
   end
 
   def failure_message_for_should_not
