@@ -37,22 +37,30 @@ describe PikiDoc do
   end
 
   shared_examples_for "プラグインなしの場合はオリジナルのHikiと同じように動くこと" do
-    it do should compat_with_hiki(format, <<-EOS) end
+    it { should compat_with_hiki(format, <<-EOS) }
 !おはよう
 !!こんにちは
 
  こんばんは
 EOS
 
-    it do should compat_with_hiki(format, <<-EOS) end
+    it { should compat_with_hiki(format, <<-EOS, :level => 3) }
+!おはよう
+!!こんにちは
+
+ こんばんは
+EOS
+
+    it { should compat_with_hiki(format, <<-EOS) }
 - foobar
 - piyopiyo
 
 EOS
+
   end
 
-  shared_examples_for "プラグインありの場合はその部分がオリジナルとことなること" do
-    it do should_not compat_with_hiki(format, <<-EOS) end
+  shared_examples_for "プラグインありの場合はオリジナルと異なること" do
+    it { should_not compat_with_hiki(format, <<-EOS) }
 !クエリつき画像リンク
 http://image.with.query.example.com/photo.jpg?size=100x75
 EOS
@@ -61,20 +69,13 @@ EOS
   context :xhtml do
     let(:format) { :xhtml }
     it_should_behave_like "プラグインなしの場合はオリジナルのHikiと同じように動くこと"
-    it_should_behave_like "プラグインありの場合はその部分がオリジナルとことなること"
+    it_should_behave_like "プラグインありの場合はオリジナルと異なること"
   end
 
   context :html do
     let(:format) { :html }
     it_should_behave_like "プラグインなしの場合はオリジナルのHikiと同じように動くこと"
-    it_should_behave_like "プラグインありの場合はその部分がオリジナルとことなること"
+    it_should_behave_like "プラグインありの場合はオリジナルと異なること"
   end
-
-  it { should compat_with_hiki(:xhtml, <<-EOS, :level => 3) }
-!おはよう
-!!こんにちは
-
- こんばんは
-EOS
 end
 
