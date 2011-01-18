@@ -4,7 +4,7 @@ require 'piki_doc/output'
 describe PikiDoc::HTMLOutput do
   # {{vote_form('order','お名前', '[勉強会]','PP, Blog, Twitter or Github', 'ひとこと', '[ust設備あり]')}} 
   describe "call inline_plugin() when respond_to?(meth) and accept?()" do
-    Spec::Matchers.define :ouptut_content do |expected|
+    RSpec::Matchers.define :ouptut_content do |expected|
       match do |actual|
         actual.finish.strip.should == expected
       end

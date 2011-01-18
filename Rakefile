@@ -1,11 +1,12 @@
 $: << "./lib"
+require 'rubygems'
 require 'piki_doc'
 
 require 'rake/clean'
 require 'rake/testtask'
 require 'rake/packagetask'
 require 'rake/gempackagetask'
-require 'spec/rake/spectask'
+require 'rspec/core/rake_task'
 require 'cucumber/rake/task'
 
 NAME              = ENV["GEMNAME"] || "piki_doc"
@@ -25,9 +26,9 @@ RDOC_OPTS = [
   "--inline-source",
 ]
 
-Spec::Rake::SpecTask.new do |t|
-  t.warning = true
-  t.spec_opts = %w[--format progress --color]
+RSpec::Core::RakeTask.new do |t|
+  t.ruby_opts = "-w"
+  t.rspec_opts = %w[--format progress --color]
 end
 
 Cucumber::Rake::Task.new do |t|
