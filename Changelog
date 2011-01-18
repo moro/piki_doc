@@ -1,3 +1,7 @@
+== 0.0.2.2 / 2011-01-18
+
+* fix some HTML output bugs, thanx mayuco.
+
 == 0.0.2.1 / 2009-04-30
 
 * fake version up to genarate gem on GitHub.
