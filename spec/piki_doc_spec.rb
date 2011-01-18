@@ -36,7 +36,7 @@ describe PikiDoc do
     HikiComatibilityMatcher.new(*arg)
   end
 
-  [:xhtml, :html].each do |format|
+  shared_examples_for "プラグインなしの場合はオリジナルのHikiと同じように動くこと" do
     it do should compat_with_hiki(format, <<-EOS) end
 !おはよう
 !!こんにちは
@@ -49,15 +49,28 @@ EOS
 - piyopiyo
 
 EOS
+  end
 
+  shared_examples_for "プラグインありの場合はその部分がオリジナルとことなること" do
     it do should_not compat_with_hiki(format, <<-EOS) end
 !クエリつき画像リンク
 http://image.with.query.example.com/photo.jpg?size=100x75
 EOS
-
   end
 
-  it do should compat_with_hiki(:xhtml, <<-EOS, :level => 3) end
+  context :xhtml do
+    let(:format) { :xhtml }
+    it_should_behave_like "プラグインなしの場合はオリジナルのHikiと同じように動くこと"
+    it_should_behave_like "プラグインありの場合はその部分がオリジナルとことなること"
+  end
+
+  context :html do
+    let(:format) { :html }
+    it_should_behave_like "プラグインなしの場合はオリジナルのHikiと同じように動くこと"
+    it_should_behave_like "プラグインありの場合はその部分がオリジナルとことなること"
+  end
+
+  it { should compat_with_hiki(:xhtml, <<-EOS, :level => 3) }
 !おはよう
 !!こんにちは
 
